@@ -144,3 +144,41 @@ rm -rf $ruta
 # Mensaje de Instalado
 
 notify-send "BSPWM INSTALADO"
+#!/bin/bash
+
+# Instalación de 7z para descomprimir
+sudo apt install -y p7zip-full
+
+# Eliminamos versión anterior de Neovim (si existe)
+sudo apt purge -y neovim 
+
+# Descargamos y extraemos Neovim 0.11.1
+wget https://github.com/neovim/neovim/releases/download/v0.11.1/nvim-linux-x86_64.tar.gz
+7z x nvim-linux-x86_64.tar.gz
+7z x nvim-linux-x86_64.tar
+rm nvim-linux-x86_64.tar nvim-linux-x86_64.tar.gz
+
+# Movemos Neovim a /opt
+mv nvim-linux-x86_64 nvim
+sudo mv nvim /opt/
+
+# Agregamos Neovim al PATH del usuario
+echo 'export PATH="$PATH:/opt/nvim/bin"' >> "$HOME/.zshrc"
+source "$HOME/.zshrc"
+
+# Agregamos Neovim al PATH de sudo (para que funcione 'sudo nvim')
+echo 'Defaults secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/nvim/bin"' | sudo tee /etc/sudoers.d/nvim-path
+
+# Configuramos NvChad
+git clone https://github.com/NvChad/starter "$HOME/.config/nvim"
+
+# Instalamos fzf para el usuario normal
+git clone --depth 1 https://github.com/junegunn/fzf.git "$HOME/.fzf"
+"$HOME/.fzf/install" --all
+
+# Instalamos fzf para root
+sudo git clone --depth 1 https://github.com/junegunn/fzf.git /root/.fzf
+sudo /root/.fzf/install --all
+
+# (Opcional) Lanzar nvim al final
+# nvim
