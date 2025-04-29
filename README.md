@@ -28,7 +28,7 @@ La configuración del mismo es al gusto.
 
 3.- Nvim
 
-Esta no esta incluida en el scripts
+Ya esta incluida en el script
 
 UNA MENCION HONORIFICA A Mr. Pr1ngl3s, por su gran colaboración.
 
