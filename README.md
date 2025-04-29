@@ -28,7 +28,7 @@ La configuración del mismo es al gusto.
 
 3.- Nvim
 
-Ya esta incluida en el script
+Ahora ya incluida en el script (al igual que fzf)
 
 UNA MENCION HONORIFICA A Mr. Pr1ngl3s, por su gran colaboración.
 
